@@ -8,21 +8,24 @@ public partial class MainWindow : Node2D
 {
 
     public override void _Ready() {
-        MainMenu.OnLoadGameEvent += SwitchFromMainToLoad;
-        LoadMenu.OnClose += SwitchFromLoadToMain;
+        MainMenu.OnLoadGameEvent += (object sender, string eventArgs) => SwitchTo("LoadMenu");
+        LoadMenu.OnClose += (object sender, string eventArgs) => SwitchTo("MainMenu");
+        MainMenu.OnNewGameEvent += (object sender, string eventArgs) => SwitchTo("Game");
+        Game.ExitButton += (object sender, string eventArgs) => SwitchTo("MainMenu");
     }
 
-    void SwitchFromMainToLoad(object sender, string eventArgs) {
-        if (GetNode("MainMenu") is CanvasLayer mm)
-            mm.Hide();
-        if (GetNode("LoadMenu") is CanvasLayer lm)
-            lm.Show();
+    void HideAll() {
+        string[] all_node_names = {"MainMenu", "LoadMenu"};
+        foreach (string node_name in all_node_names)
+            if (GetNode(node_name) is CanvasLayer cl)
+                cl.Hide();
     }
-    void SwitchFromLoadToMain(object sender, string eventArgs) {
-        if (GetNode("LoadMenu") is CanvasLayer lm)
-            lm.Hide();
-        if (GetNode("MainMenu") is CanvasLayer mm)
-            mm.Show();
+
+    void SwitchTo(string eventArgs) {
+        // GD.Print("Switching to '", eventArgs, "'");
+        HideAll();
+        if (GetNode(eventArgs) is CanvasLayer cl)
+            cl.Show();
     }
 
     public override void _Process(double delta) {}

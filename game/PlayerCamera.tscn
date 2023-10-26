@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw2a3gslm0hj6"]
+
+[ext_resource type="Script" path="res://game/PlayerCamera.cs" id="1_8e3ux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rn5a3"]
+
+[node name="PlayerCamera" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_8e3ux")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_rn5a3")
+disabled = true

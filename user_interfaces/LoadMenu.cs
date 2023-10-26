@@ -1,3 +1,5 @@
+namespace CatWorld;
+
 using Godot;
 using System;
 

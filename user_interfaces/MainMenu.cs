@@ -14,6 +14,7 @@ public partial class MainMenu : CanvasLayer
     {
     }
 
+    public static event EventHandler<String> OnNewGameEvent;
     public static event EventHandler<String> OnLoadGameEvent;
 
     public void _on_load_game_button_pressed() {
@@ -21,6 +22,9 @@ public partial class MainMenu : CanvasLayer
     }
     public void _on_quit_button_pressed() {
         GetTree().Quit();
+    }
+    void _on_new_game_button_pressed() {
+        OnNewGameEvent?.Invoke(this, "");
     }
 
 }

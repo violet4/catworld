@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb48lgnwxexgj"]
+[gd_scene load_steps=4 format=3 uid="uid://bb48lgnwxexgj"]
 
 [ext_resource type="Script" path="res://user_interfaces/MainMenu.cs" id="1_7cfs6"]
 
+[sub_resource type="Gradient" id="Gradient_jecxo"]
+offsets = PackedFloat32Array(0, 0.0125, 0.999223, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.321591, 0.157813, 0.174003, 1, 0, 0.989513, 0.165376, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqd1p"]
+gradient = SubResource("Gradient_jecxo")
+fill_from = Vector2(0, 1)
+
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_7cfs6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(568, 328)
+scale = Vector2(18.75, 10.75)
+texture = SubResource("GradientTexture2D_sqd1p")
 
 [node name="LoadGameButton" type="Button" parent="."]
 offset_left = 128.0
@@ -27,4 +40,5 @@ offset_bottom = 304.0
 text = "Quit"
 
 [connection signal="pressed" from="LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
