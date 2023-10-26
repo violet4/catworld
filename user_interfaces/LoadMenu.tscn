@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dceb4scpruuiv"]
+
+[ext_resource type="Script" path="res://user_interfaces/LoadMenu.cs" id="1_qfrpt"]
+
+[node name="LoadMenu" type="CanvasLayer"]
+script = ExtResource("1_qfrpt")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 512.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 528.0
+offset_top = 448.0
+offset_right = 624.0
+offset_bottom = 480.0
+text = "Close"
+
+[connection signal="pressed" from="Button" to="." method="_on_close_button_pressed"]
