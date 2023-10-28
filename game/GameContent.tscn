@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqtikex407hwx"]
+
+[ext_resource type="Script" path="res://game/GameContent.cs" id="1_bjtw4"]
+[ext_resource type="Texture2D" uid="uid://25qoj26ccex8" path="res://assets/icon.svg" id="1_pwgii"]
+
+[node name="GameContent" type="Node2D"]
+script = ExtResource("1_bjtw4")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-240, -176)
+texture = ExtResource("1_pwgii")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+texture = ExtResource("1_pwgii")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(224, -192)
+texture = ExtResource("1_pwgii")

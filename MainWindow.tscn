@@ -1,16 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://damey0wnvh3un"]
+[gd_scene load_steps=6 format=3 uid="uid://damey0wnvh3un"]
 
-[ext_resource type="Script" path="res://MainWindow.cs" id="1_80oak"]
-[ext_resource type="PackedScene" uid="uid://bb48lgnwxexgj" path="res://user_interfaces/MainMenu.tscn" id="1_b15iu"]
-[ext_resource type="PackedScene" uid="uid://dceb4scpruuiv" path="res://user_interfaces/LoadMenu.tscn" id="2_3850d"]
-[ext_resource type="PackedScene" uid="uid://swvn66ar0e6x" path="res://game/Game.tscn" id="4_p63ad"]
+[ext_resource type="Script" path="res://MainWindow.cs" id="1_f1y4d"]
+[ext_resource type="Texture2D" uid="uid://5kqcbc1wnooy" path="res://assets/rimworld_background.png" id="2_vgnnc"]
+[ext_resource type="Script" path="res://user_interfaces/LoadMenu.cs" id="4_38w64"]
+[ext_resource type="PackedScene" uid="uid://swvn66ar0e6x" path="res://game/GameInterface.tscn" id="4_p63ad"]
+[ext_resource type="Script" path="res://user_interfaces/MainMenu.cs" id="6_ypni0"]
 
 [node name="MainWindow" type="Node2D"]
-script = ExtResource("1_80oak")
+script = ExtResource("1_f1y4d")
 
-[node name="MainMenu" parent="." instance=ExtResource("1_b15iu")]
+[node name="MainMenuBackground" type="Sprite2D" parent="."]
+scale = Vector2(0.581771, 0.525)
+texture = ExtResource("2_vgnnc")
 
-[node name="LoadMenu" parent="." instance=ExtResource("2_3850d")]
+[node name="MainMenu" type="CanvasLayer" parent="."]
+script = ExtResource("6_ypni0")
+
+[node name="LoadGameButton" type="Button" parent="MainMenu"]
+offset_left = 64.0
+offset_top = 155.0
+offset_right = 192.0
+offset_bottom = 203.0
+text = "Load Game"
+
+[node name="NewGameButton" type="Button" parent="MainMenu"]
+offset_left = 64.0
+offset_top = 91.0
+offset_right = 192.0
+offset_bottom = 139.0
+text = "New Game"
+
+[node name="QuitButton" type="Button" parent="MainMenu"]
+offset_left = 64.0
+offset_top = 219.0
+offset_right = 192.0
+offset_bottom = 267.0
+text = "Quit"
+
+[node name="LoadMenu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("4_38w64")
+
+[node name="ItemList" type="ItemList" parent="LoadMenu"]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 512.0
+
+[node name="LoadButton" type="Button" parent="LoadMenu"]
+offset_left = 472.0
+offset_top = 536.0
+offset_right = 568.0
+offset_bottom = 568.0
+text = "Load"
+
+[node name="CloseButton" type="Button" parent="LoadMenu"]
+offset_left = 584.0
+offset_top = 536.0
+offset_right = 680.0
+offset_bottom = 568.0
+text = "Close"
+
+[node name="GameInterface" parent="." instance=ExtResource("4_p63ad")]
 visible = false
 
-[node name="Game" parent="." instance=ExtResource("4_p63ad")]
+[connection signal="pressed" from="MainMenu/LoadGameButton" to="MainMenu" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="MainMenu/NewGameButton" to="MainMenu" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainMenu/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LoadMenu/LoadButton" to="LoadMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="LoadMenu/CloseButton" to="LoadMenu" method="_on_close_button_pressed"]

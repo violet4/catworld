@@ -6,19 +6,16 @@ using System;
 public partial class MainMenu : CanvasLayer
 {
 
-    public override void _Ready()
-    {
-    }
+    public override void _Ready() {}
 
-    public override void _Process(double delta)
-    {
-    }
+    public override void _Process(double delta) {}
 
-    public static event EventHandler<String> OnNewGameEvent;
-    public static event EventHandler<String> OnLoadGameEvent;
+    public static event EventHandler<string> OnNewGameEvent;
+    public static event EventHandler<string> OnGotoLoadWindow;
 
     public void _on_load_game_button_pressed() {
-        OnLoadGameEvent?.Invoke(this, "");
+        GD.Print("load game");
+        OnGotoLoadWindow?.Invoke(this, "");
     }
     public void _on_quit_button_pressed() {
         GetTree().Quit();

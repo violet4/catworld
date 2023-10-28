@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://swvn66ar0e6x"]
+
+[ext_resource type="Script" path="res://game/GameInterface.cs" id="1_5xapo"]
+[ext_resource type="PackedScene" uid="uid://bw2a3gslm0hj6" path="res://game/PlayerCamera.tscn" id="3_6mq8q"]
+[ext_resource type="Texture2D" uid="uid://25qoj26ccex8" path="res://assets/icon.svg" id="3_qqgy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6quf"]
+size = Vector2(128, 128)
+
+[node name="GameInterface" type="Node2D"]
+script = ExtResource("1_5xapo")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_6mq8q")]
+
+[node name="ExitButton" type="Button" parent="PlayerCamera"]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -496.0
+offset_bottom = -293.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveButton" type="Button" parent="PlayerCamera"]
+offset_left = -496.0
+offset_top = -324.0
+offset_right = -416.0
+offset_bottom = -293.0
+text = "Save"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerPositionLabel" type="Label" parent="PlayerCamera"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Characters"]
+position = Vector2(-262, -151)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/CharacterBody2D"]
+shape = SubResource("RectangleShape2D_p6quf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Characters/CharacterBody2D"]
+texture = ExtResource("3_qqgy6")
+
+[node name="GameMap" type="TileMap" parent="."]
+format = 2
+
+[connection signal="pressed" from="PlayerCamera/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PlayerCamera/SaveButton" to="." method="_on_save_button_pressed"]
