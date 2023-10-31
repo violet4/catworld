@@ -14,6 +14,9 @@ public partial class LoadMenu : CanvasLayer
     public static event EventHandler<string> OnLoadFile;
 
     private List<string> files = new();
+    public override void _Ready() {
+        Initialize();
+    }
     public void Initialize() {
         files.Clear();
         if (GetNode("ItemList") is ItemList list){

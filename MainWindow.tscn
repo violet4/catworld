@@ -9,52 +9,55 @@
 [node name="MainWindow" type="Node2D"]
 script = ExtResource("1_f1y4d")
 
-[node name="MainMenuBackground" type="Sprite2D" parent="."]
-scale = Vector2(0.581771, 0.525)
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="MainMenuBackground" type="Sprite2D" parent="Menu"]
+position = Vector2(579, 329)
+scale = Vector2(0.603125, 0.609259)
 texture = ExtResource("2_vgnnc")
 
-[node name="MainMenu" type="CanvasLayer" parent="."]
+[node name="MainMenu" type="CanvasLayer" parent="Menu"]
 script = ExtResource("6_ypni0")
 
-[node name="LoadGameButton" type="Button" parent="MainMenu"]
+[node name="LoadGameButton" type="Button" parent="Menu/MainMenu"]
 offset_left = 64.0
 offset_top = 155.0
 offset_right = 192.0
 offset_bottom = 203.0
 text = "Load Game"
 
-[node name="NewGameButton" type="Button" parent="MainMenu"]
+[node name="NewGameButton" type="Button" parent="Menu/MainMenu"]
 offset_left = 64.0
 offset_top = 91.0
 offset_right = 192.0
 offset_bottom = 139.0
 text = "New Game"
 
-[node name="QuitButton" type="Button" parent="MainMenu"]
+[node name="QuitButton" type="Button" parent="Menu/MainMenu"]
 offset_left = 64.0
 offset_top = 219.0
 offset_right = 192.0
 offset_bottom = 267.0
 text = "Quit"
 
-[node name="LoadMenu" type="CanvasLayer" parent="."]
+[node name="LoadMenu" type="CanvasLayer" parent="Menu"]
 visible = false
 script = ExtResource("4_38w64")
 
-[node name="ItemList" type="ItemList" parent="LoadMenu"]
+[node name="ItemList" type="ItemList" parent="Menu/LoadMenu"]
 offset_left = 128.0
 offset_top = 128.0
 offset_right = 1024.0
 offset_bottom = 512.0
 
-[node name="LoadButton" type="Button" parent="LoadMenu"]
+[node name="LoadButton" type="Button" parent="Menu/LoadMenu"]
 offset_left = 472.0
 offset_top = 536.0
 offset_right = 568.0
 offset_bottom = 568.0
 text = "Load"
 
-[node name="CloseButton" type="Button" parent="LoadMenu"]
+[node name="CloseButton" type="Button" parent="Menu/LoadMenu"]
 offset_left = 584.0
 offset_top = 536.0
 offset_right = 680.0
@@ -64,8 +67,8 @@ text = "Close"
 [node name="GameInterface" parent="." instance=ExtResource("4_p63ad")]
 visible = false
 
-[connection signal="pressed" from="MainMenu/LoadGameButton" to="MainMenu" method="_on_load_game_button_pressed"]
-[connection signal="pressed" from="MainMenu/NewGameButton" to="MainMenu" method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="MainMenu/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="LoadMenu/LoadButton" to="LoadMenu" method="_on_load_button_pressed"]
-[connection signal="pressed" from="LoadMenu/CloseButton" to="LoadMenu" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/LoadGameButton" to="Menu/MainMenu" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/NewGameButton" to="Menu/MainMenu" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/QuitButton" to="Menu/MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Menu/LoadMenu/LoadButton" to="Menu/LoadMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="Menu/LoadMenu/CloseButton" to="Menu/LoadMenu" method="_on_close_button_pressed"]

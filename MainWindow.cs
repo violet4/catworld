@@ -10,14 +10,14 @@ public partial class MainWindow : Node2D
     public override void _Ready() {
         if (GetNode("GameInterface") is Node2D n)
             GD.Print("visibility from main window: ", n.Visible);
-        LoadMenu.OnClose += (object sender, string eventArgs) => SwitchTo("MainMenu", true);
+        LoadMenu.OnClose += (object sender, string eventArgs) => SwitchTo("Menu/MainMenu", true);
         MainMenu.OnNewGameEvent += (object sender, string eventArgs) => {
             SwitchTo("GameInterface", false);
         };
         GameInterface.OnQuit += (object sender, string eventArgs) => {
-            SwitchTo("MainMenu", true);
+            SwitchTo("Menu/MainMenu", true);
         };
-        MainMenu.OnGotoLoadWindow += (object sender, string eventArgs) => SwitchTo("LoadMenu", false);
+        MainMenu.OnGotoLoadWindow += (object sender, string eventArgs) => SwitchTo("Menu/LoadMenu", true);
         LoadMenu.OnLoadFile += (object sender, string filename) => {
             if (GetNode("GameInterface") is GameInterface gi)
                 gi.LoadGame(filename);
@@ -26,18 +26,18 @@ public partial class MainWindow : Node2D
     }
 
     void HideAll() {
-        string[] all_node_names = {"MainMenu", "LoadMenu"};
+        string[] all_node_names = {"Menu/MainMenu", "Menu/LoadMenu"};
         foreach (string node_name in all_node_names)
             if (GetNode(node_name) is CanvasLayer cl)
                 cl.Hide();
     }
 
     void SwitchTo(string eventArgs, bool background_show) {
-        if (GetNode("MainMenuBackground") is Sprite2D bg)
+        if (GetNode("Menu/MainMenuBackground") is Sprite2D bg)
             bg.Visible = background_show;
         // GD.Print("Switching to '", eventArgs, "'");
         HideAll();
-        if (eventArgs == "LoadMenu" && GetNode("LoadMenu") is LoadMenu menu)
+        if (eventArgs == "LoadMenu" && GetNode("Menu/LoadMenu") is LoadMenu menu)
             menu.Initialize();
         if (GetNode(eventArgs) is CanvasLayer cl)
             cl.Show();
